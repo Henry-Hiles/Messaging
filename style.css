@@ -1,0 +1,141 @@
+:root {
+    --primary: #14bbaa;
+    --secondary: #2c3c4c;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1.2em;
+    scroll-behavior: smooth;
+    display: grid;
+    grid-template-rows: 100px 1fr 175px;
+    height: 100vh;
+}
+
+nav,
+footer {
+    background-color: var(--secondary);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+nav a {
+    margin: 0 0.5em;
+    text-decoration: none;
+    text-transform: capitalize;
+    width: fit-content;
+    color: white;
+    grid-template-columns: 1fr 500px;
+}
+
+nav:first-child a {
+    font-size: 1.5em;
+}
+
+footer {
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+textarea {
+    border: none;
+    color: white;
+    background-color: transparent;
+    border-bottom: 0.05em solid white;
+    font-family: inherit;
+    font-size: 2rem;
+    max-width: 100%;
+    max-height: 90%;
+}
+
+textarea::placeholder {
+    color: white;
+}
+
+button {
+    border: none;
+    border-radius: 2em;
+    color: #f5f0f0;
+    font-size: 1em;
+    padding: 0.7rem 1.6rem;
+    text-decoration: none;
+    background-color: var(--primary);
+}
+
+button:hover {
+    filter: brightness(0.9);
+}
+
+.message-timestamp {
+    font-size: 12px;
+    color: white;
+}
+
+.message-text {
+    padding: 10px;
+    font-size: 17px;
+    white-space: initial;
+    line-height: 23px;
+    font-weight: normal;
+    word-wrap: break-word;
+    display: inline-block;
+    background-color: #e4366a;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+}
+
+#messages {
+    background-color: var(--primary);
+    padding: 30px;
+    overflow-y: auto;
+}
+
+#messages::-webkit-scrollbar {
+    width: 10px;
+}
+
+#messages::-webkit-scrollbar-track {
+    display: none;
+}
+
+#messages::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+    border-radius: 10px;
+}
+
+#messages::-webkit-scrollbar-thumb:hover {
+    filter: brightness(0.9);
+}
+
+.message-content {
+    max-width: 75%;
+}
+
+.message {
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.message-right {
+    justify-content: right;
+}
+
+.message-right .message-text {
+    background-color: #e9e932;
+    color: #424242;
+}

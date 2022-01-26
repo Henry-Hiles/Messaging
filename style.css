@@ -16,9 +16,9 @@ body {
         "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 1.2em;
     scroll-behavior: smooth;
+    height: 100vh;
     display: grid;
     grid-template-rows: 100px 1fr 175px;
-    height: 100vh;
 }
 
 nav,
@@ -33,7 +33,6 @@ footer {
 nav a {
     margin: 0 0.5em;
     text-decoration: none;
-    text-transform: capitalize;
     width: fit-content;
     color: white;
     grid-template-columns: 1fr 500px;
@@ -49,7 +48,8 @@ footer {
     padding: 20px;
 }
 
-textarea {
+textarea,
+input[type="text"] {
     border: none;
     color: white;
     background-color: transparent;
@@ -60,7 +60,7 @@ textarea {
     max-height: 90%;
 }
 
-textarea::placeholder {
+:is(textarea, input[type="text"])::placeholder {
     color: white;
 }
 
@@ -68,19 +68,38 @@ button {
     border: none;
     border-radius: 2em;
     color: #f5f0f0;
+    background-color: transparent;
     font-size: 1em;
+    cursor: pointer;
     padding: 0.7rem 1.6rem;
     text-decoration: none;
+}
+
+.button-primary {
     background-color: var(--primary);
+}
+
+.button-secondary {
+    background-color: var(--secondary);
+}
+
+.button-circle {
+    padding: 0.85em 1em;
+}
+
+svg {
+    height: 1.5em;
+    width: 1.5em;
 }
 
 button:hover {
     filter: brightness(0.9);
 }
 
-.message-timestamp {
+.message-info {
     font-size: 12px;
     color: white;
+    text-transform: capitalize;
 }
 
 .message-text {
@@ -101,6 +120,8 @@ button:hover {
     background-color: var(--primary);
     padding: 30px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 #messages::-webkit-scrollbar {
@@ -126,6 +147,7 @@ button:hover {
 
 .message {
     padding: 5px;
+    margin-top: 5px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -135,7 +157,75 @@ button:hover {
     justify-content: right;
 }
 
+.message-middle {
+    justify-content: center;
+}
+
 .message-right .message-text {
     background-color: #e9e932;
     color: #424242;
+}
+
+.system .message-text {
+    background-color: #05d0eb;
+    color: white;
+}
+
+#login {
+    background-color: var(--primary);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#login.done {
+    display: none;
+}
+
+#login:not(.done) + nav,
+#login:not(.done) + nav + div,
+#login:not(.done) + nav + div + footer {
+    display: none !important;
+}
+
+.medium-header {
+    font-size: 3rem;
+    font-weight: 250;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.large-header {
+    font-size: 5rem;
+    font-weight: 300;
+    line-height: 1.2;
+    display: flex;
+}
+
+:is(input[type="text"], textarea):required {
+    animation: shake 0.2s ease-in-out 0s 2;
+    color: #ff0000;
+    border-color: red !important;
+}
+
+:is(input[type="text"], textarea):required::placeholder {
+    color: #f20000;
+}
+
+@keyframes shake {
+    0% {
+        margin-left: 0rem;
+    }
+    25% {
+        margin-left: 0.5rem;
+    }
+    75% {
+        margin-left: -0.5rem;
+    }
+    100% {
+        margin-left: 0rem;
+    }
 }

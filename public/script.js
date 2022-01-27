@@ -2,7 +2,8 @@ import moment from "https://jspm.dev/moment"
 import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js"
 const socket = io(":3000")
 const messageButton = document.querySelector("#send")
-const nameButton = document.querySelector("button")
+const nameButton = document.querySelector("#name")
+const roomContainer = document.querySelector("#room-container")
 const nameInput = document.querySelector("input")
 const messageInput = document.querySelector("textarea")
 
@@ -34,29 +35,42 @@ const addMessage = (messageObject) => {
     document.querySelector("#messages").prepend(messageDiv)
 }
 
-nameButton.addEventListener("click", () => {
-    if (!nameInput.value) return (nameInput.required = true)
-    document.querySelector("#login").classList.add("done")
-    socket.emit("new-user", nameInput.value)
-    addMessage({
-        message: "You joined",
-        isYours: true,
-        isSystem: true,
-    })
+socket.on("room-created", (room) => {
+    const roomItem = document.createElement("li")
+    const roomLink = document.createElement("a")
+    roomLink.href = `/${room}`
+    roomLink.innerText = room
+    roomItem.append(roomLink)
+    roomContainer.append(roomItem)
 })
 
-messageButton.addEventListener("click", () => {
-    if (!messageInput.value) return (messageInput.required = true)
-    socket.emit("send-chat-message", messageInput.value)
-    addMessage({ user: "you", message: messageInput.value, isYours: true })
-    messageInput.value = ""
-})
+if (nameButton)
+    nameButton.addEventListener("click", () => {
+        if (!nameInput.value) return (nameInput.required = true)
+        document.querySelector("#login").classList.add("done")
+        socket.emit("new-user", roomName, nameInput.value)
+        addMessage({
+            message: "You joined",
+            isYours: true,
+            isSystem: true,
+        })
+    })
+
+if (messageButton)
+    messageButton.addEventListener("click", () => {
+        if (!messageInput.value) return (messageInput.required = true)
+        messageInput.required = false
+        socket.emit("send-chat-message", roomName, messageInput.value)
+        addMessage({ user: "you", message: messageInput.value, isYours: true })
+        messageInput.value = ""
+    })
 
 socket.on("chat-message", (message, user) => {
     addMessage({ message, user })
 })
 
 socket.on("user-connected", (name) => {
+    socket.emit("join-room", ROOM_ID)
     addMessage({ message: `${name} joined`, isSystem: true })
 })
 

@@ -30,7 +30,7 @@ footer {
     align-items: center;
 }
 
-nav a {
+a {
     margin: 0 0.5em;
     text-decoration: none;
     width: fit-content;
@@ -38,8 +38,12 @@ nav a {
     grid-template-columns: 1fr 500px;
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
 nav:first-child a {
-    font-size: 1.5em;
+    font-size: 1.5em !important;
 }
 
 footer {
@@ -114,6 +118,13 @@ button:hover {
     text-align: center;
     color: white;
     border-radius: 20px;
+}
+#main-content {
+    background-color: var(--primary);
+    color: white;
+    display: flex;
+    padding: 30px;
+    flex-direction: column;
 }
 
 #messages {

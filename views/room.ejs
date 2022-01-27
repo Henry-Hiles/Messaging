@@ -3,8 +3,11 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Messaging</title>
+        <title>Messaging - Chatting</title>
         <link rel="stylesheet" href="style.css" />
+        <script>
+            const roomName = "<%= roomName %>"
+        </script>
         <script type="module" src="script.js"></script>
     </head>
 
@@ -13,7 +16,7 @@
             <h1 class="large-header">Login</h1>
             <div>
                 <input type="text" placeholder="Username" />
-                <button class="button-circle">
+                <button class="button-circle" id="name">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"

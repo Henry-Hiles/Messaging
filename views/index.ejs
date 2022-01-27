@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css" />
+        <script type="module" src="script.js"></script>
+    </head>
+    <body>
+        <nav><a href="#">Home</a><a href="#">Also home</a></nav>
+        <!-- <% if("<%= roomName %>") {} else -->
+        <div id="main-content">
+            <div id="room-container">
+                <span>Joinable rooms:</span>
+                <ul>
+                    <% Object.keys(rooms).forEach(room => { %>
+                    <li><a href="/<%= room %>"><%= room %></a></li>
+                    <% }) %>
+                </ul>
+            </div>
+            <form action="/room" method="POST">
+                <label for="room"></label>
+                <input
+                    id="room"
+                    name="room"
+                    type="text"
+                    placeholder="Room Name"
+                />
+                <button class="button-primary" type="submit">New Room</button>
+            </form>
+        </div>
+        <footer>
+            <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://github.com/Henry-Hiles"
+                >My Github</a
+            >
+        </footer>
+    </body>
+</html>

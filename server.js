@@ -4,10 +4,9 @@ const server = require("http").Server(app)
 const io = require("socket.io")(server, {
     cors: {
         origin: [
-            "http://localhost:5500",
-            "http://127.0.0.1:5500",
-            "http//192.168.1.226:5500",
-            "http//192.168.1.226:5500",
+            "http://127.0.0.1:3000",
+            "http://192.168.1.226:3000",
+            "http://192.168.1.226:3000",
         ],
     },
 })
@@ -26,10 +25,10 @@ const getUserRooms = (socket) =>
 const rooms = {}
 
 app.get("/", (_, res) => {
-    res.render("index", { rooms: rooms })
+    res.render("index", { rooms: rooms, roomName: null })
 })
 
-app.post("/room", (req, res) => {
+app.post("/", (req, res) => {
     if (rooms[req.body.room] != null) {
         return res.redirect("/")
     }
@@ -42,7 +41,7 @@ app.get("/:room", (req, res) => {
     if (rooms[req.params.room] == null) {
         return res.redirect("/")
     }
-    res.render("room", { roomName: req.params.room })
+    res.render("index", { rooms: rooms, roomName: req.params.room })
 })
 
 server.listen(3000)
@@ -58,6 +57,13 @@ io.on("connection", (socket) => {
         socket.broadcast
             .to(room)
             .emit("chat-message", message, rooms[room].users[socket.id])
+    })
+
+    socket.on("name-change", (room, newName) => {
+        socket.broadcast
+            .to(room)
+            .emit("name-changed", rooms[room].users[socket.id], newName)
+        rooms[room].users[socket.id] = newName
     })
 
     socket.on("disconnect", () =>

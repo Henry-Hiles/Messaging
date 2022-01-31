@@ -38,7 +38,7 @@ body {
     width: 0;
     overflow: hidden;
     align-items: center;
-    transition: width 2s;
+    transition: width 0.6s;
     display: flex;
     z-index: 1;
     color: white;

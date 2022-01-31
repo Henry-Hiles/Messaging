@@ -20,6 +20,9 @@ setInterval(
     45000
 )
 
+const toggleOpen = () =>
+    document.querySelector("#rooms").classList.toggle("opened")
+
 const addMessage = (messageObject) => {
     const { message, isYours, isSystem, user } = messageObject
     const messageDiv = document
@@ -45,11 +48,11 @@ if (roomName) {
         isYours: true,
         isSystem: true,
     })
+
+    if (window.screen.width < 1000) toggleOpen()
 }
 
-menuButton.addEventListener("click", () =>
-    document.querySelector("#rooms").classList.toggle("opened")
-)
+menuButton.addEventListener("click", toggleOpen)
 
 if (!localStorage.getItem("name")) login.classList.remove("done")
 else nameDisplay.innerHTML = localStorage.getItem("name")

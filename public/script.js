@@ -49,7 +49,10 @@ if (roomName) {
         isSystem: true,
     })
 
-    if (window.screen.width < 1000) toggleOpen()
+    if (window.screen.width < 1000) {
+        toggleOpen()
+        document.querySelector("#roomName").innerText = roomName
+    }
 }
 
 menuButton.addEventListener("click", toggleOpen)

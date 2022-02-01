@@ -38,7 +38,7 @@ body {
     width: 0;
     overflow: hidden;
     align-items: center;
-    transition: width 0.6s;
+    transition: width 0.6s, padding 0.6s;
     display: flex;
     z-index: 1;
     color: white;
@@ -79,6 +79,7 @@ body {
 
 #rooms.opened {
     width: 18vw;
+    padding: 20px;
 }
 
 #rooms:not(.opened) + div nav {
@@ -121,8 +122,8 @@ a {
     grid-template-columns: 1fr 500px;
 }
 
-nav:first-child a {
-    font-size: 1.5em !important;
+nav span {
+    font-size: 2em;
 }
 
 footer {

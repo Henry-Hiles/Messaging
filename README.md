@@ -1,6 +1,8 @@
 # Messaging
-A simple messaging website where multiple users can chat together. Made using node.js, and the packages socket.io, and nodemon (for dev only).
-It also uses moment.js client-side. 
 
-### Todo
-Adding room support
+A simple, open-source, online chat room where you can join online chat rooms, or create your own.
+Made with the technologies below.
+
+## Technologies
+
+This project was built using handcrafted Javascript, as well as Node.js, Socket.io, and Express. It also uses nodemon for running in development.

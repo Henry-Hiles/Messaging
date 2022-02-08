@@ -20,11 +20,24 @@ setInterval(
     45000
 )
 
+const submitMessage = () => {
+    if (!messageInput.value) return (messageInput.required = true)
+    messageInput.required = false
+    socket.emit("send-chat-message", roomName, messageInput.value)
+    addMessage({ user: "you", message: messageInput.value, isYours: true })
+    messageInput.value = ""
+}
+
+messageInput.addEventListener("keydown", (event) => {
+    if (event.shiftKey || event.key != "Enter") return
+    event.preventDefault()
+    submitMessage()
+})
+
 const toggleOpen = () =>
     document.querySelector("#rooms").classList.toggle("opened")
 
-const addMessage = (messageObject) => {
-    const { message, isYours, isSystem, user } = messageObject
+const addMessage = ({ message, isYours, isSystem, user }) => {
     const messageDiv = document
         .querySelector("template")
         .content.cloneNode(true)
@@ -90,14 +103,7 @@ if (nameButton)
         }
     })
 
-if (messageButton)
-    messageButton.addEventListener("click", () => {
-        if (!messageInput.value) return (messageInput.required = true)
-        messageInput.required = false
-        socket.emit("send-chat-message", roomName, messageInput.value)
-        addMessage({ user: "you", message: messageInput.value, isYours: true })
-        messageInput.value = ""
-    })
+if (messageButton) messageButton.addEventListener("click", submitMessage)
 
 socket.on("chat-message", (message, user) => {
     addMessage({ message, user })

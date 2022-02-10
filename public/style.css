@@ -78,7 +78,7 @@ body {
 }
 
 #rooms.opened {
-    width: 18vw;
+    width: 30vw;
     padding: 20px;
 }
 
@@ -318,12 +318,9 @@ button:is(:disabled, :hover) {
     display: none;
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 1500px) {
     #rooms-header {
         visibility: hidden;
-    }
-    #rooms.opened {
-        width: 30vw;
     }
 }
 

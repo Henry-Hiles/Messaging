@@ -1,6 +1,6 @@
 import moment from "https://jspm.dev/moment"
 import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js"
-const socket = io(":3000")
+const socket = io("/socket")
 const messageButton = document.querySelector("#send")
 const menuButton = document.querySelector("#menu")
 const nameButton = document.querySelector("#name")

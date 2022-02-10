@@ -29,7 +29,7 @@ const submitMessage = () => {
 }
 
 messageInput.addEventListener("keydown", (event) => {
-    if (event.shiftKey || event.key != "Enter") return
+    if (event.key != "Enter" || event.shiftKey) return
     event.preventDefault()
     submitMessage()
 })

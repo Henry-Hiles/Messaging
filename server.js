@@ -6,10 +6,12 @@ const io = require("socket.io")(server, {
         origin: [
             "http://127.0.0.1:3000",
             "http://192.168.1.226:3000",
-            "http://192.168.1.226:3000",
+            "https://chat.henryhiles.com",
         ],
     },
 })
+
+io.serveClient(false)
 
 app.set("views", "./views")
 app.set("view engine", "ejs")

@@ -8,6 +8,7 @@ const io = require("socket.io")(server, {
             "http://192.168.1.226:3000",
             "https://chat.henryhiles.com",
         ],
+        path: "/foo",
     },
 })
 

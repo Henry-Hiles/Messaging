@@ -1,6 +1,6 @@
 import moment from "https://jspm.dev/moment"
 import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js"
-const socket = io("https://chat.henryhiles.com", { path: "/foo/foo" })
+const socket = io()
 const messageButton = document.querySelector("#send")
 const menuButton = document.querySelector("#menu")
 const nameButton = document.querySelector("#name")

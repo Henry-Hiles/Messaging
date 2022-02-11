@@ -30,7 +30,7 @@ body {
     width: 100%;
     height: 100vh;
     display: grid;
-    grid-template-rows: 100px 1fr 175px;
+    grid-template-rows: 100px 1fr 150px;
 }
 
 #rooms {
@@ -43,6 +43,10 @@ body {
     z-index: 1;
     color: white;
     flex-direction: column;
+}
+
+#rooms #rooms-header {
+    margin-top: 7px;
 }
 
 #rooms h1 {
@@ -78,7 +82,7 @@ body {
 }
 
 #rooms.opened {
-    width: 30vw;
+    width: 20vw;
     padding: 20px;
 }
 
@@ -86,21 +90,8 @@ body {
     padding-left: 70px;
 }
 
-#rooms input {
-    width: 80%;
-}
-
-#rooms input::placeholder {
-    text-align: center;
-}
-
 #rooms form {
-    text-align: center;
-    margin: auto 0 20px 0;
-}
-
-#rooms form button {
-    margin-top: 10px;
+    margin: auto 5px 20px 5px;
 }
 
 nav,
@@ -129,11 +120,9 @@ nav span {
 footer {
     justify-content: center;
     gap: 30px;
-    padding: 20px;
 }
 
-textarea,
-input[type="text"] {
+:is(textarea, input[type="text"]):not(.input-field) {
     border: none;
     color: white;
     background-color: transparent;
@@ -317,6 +306,48 @@ button:is(:disabled, :hover) {
 #no-rooms.changed {
     display: none;
 }
+.input-group {
+    display: flex;
+    justify-content: center;
+}
+
+.input-field {
+    flex: 1;
+    width: 100%;
+    font-size: 1em;
+}
+
+.input-field::placeholder {
+    color: var(--secondary) !important;
+}
+
+.input-field:not(:first-child) {
+    border-left: 0;
+}
+.input-field:not(:last-child) {
+    border-right: 0;
+}
+
+.input-item {
+    background-color: var(--secondary);
+    font: inherit;
+}
+
+.input-field,
+.input-item {
+    border: 1px solid #93806c40;
+    padding: 0.5rem 0.75rem;
+}
+
+.input-field:first-child,
+.input-item:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.input-field:last-child,
+.input-item:last-child {
+    border-radius: 0 5px 5px 0;
+}
 
 @media (max-width: 1500px) {
     #rooms-header {
@@ -324,7 +355,7 @@ button:is(:disabled, :hover) {
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1300px) {
     #rooms.opened {
         width: 100vw;
     }
@@ -358,7 +389,7 @@ button:is(:disabled, :hover) {
         flex-direction: column;
     }
 
-    button:not(#menu, .button-circle) {
+    button:not(#menu, .button-circle, .input-item) {
         display: block;
         width: 100%;
     }

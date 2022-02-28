@@ -36,6 +36,7 @@ body {
 #rooms {
     background-color: var(--secondary);
     width: 0;
+    padding: 20px 0;
     overflow: hidden;
     align-items: center;
     transition: width 0.6s, padding 0.6s;
@@ -294,12 +295,16 @@ button:is(:disabled, :hover) {
     display: flex;
 }
 
-:is(input[type="text"], textarea):required {
+:required {
     animation: shake 0.2s ease-in-out 0s 2;
     border-color: red !important;
 }
 
-:is(input[type="text"], textarea):required::placeholder {
+.required {
+    border-color: red !important;
+}
+
+:required::placeholder {
     color: #f20000;
 }
 
@@ -313,12 +318,14 @@ button:is(:disabled, :hover) {
 
 .input-field {
     flex: 1;
+    background-color: #3b3b3b;
     width: 100%;
+    color: #f5f5f5;
     font-size: 1em;
 }
 
 .input-field::placeholder {
-    color: var(--secondary) !important;
+    color: #f5f5f5;
 }
 
 .input-field:not(:first-child) {

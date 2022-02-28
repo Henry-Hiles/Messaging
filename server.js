@@ -31,7 +31,7 @@ app.get("/", (_, res) => {
 })
 
 app.post("/", (req, res) => {
-    if (rooms[req.body.room] != null) {
+    if (!req.body.room.trim() || rooms[req.body.room]) {
         return res.redirect("/")
     }
     rooms[req.body.room] = { users: {} }

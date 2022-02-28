@@ -5,6 +5,7 @@ const messageButton = document.querySelector("#send")
 const menuButton = document.querySelector("#menu")
 const nameButton = document.querySelector("#name")
 const nameInput = document.querySelector("input")
+const roomInput = document.querySelector("#room")
 const roomContainer = document.querySelector("#room-container")
 const messageInput = document.querySelector("textarea")
 const login = document.querySelector("#login")
@@ -27,6 +28,31 @@ const submitMessage = () => {
     addMessage({ user: "you", message: messageInput.value, isYours: true })
     messageInput.value = ""
 }
+
+const type = (newText) => {
+    const element = document.activeElement
+    element.setRangeText(
+        newText,
+        element.selectionStart,
+        element.selectionEnd,
+        "end"
+    )
+}
+
+roomInput.addEventListener("keydown", (event) => {
+    if (event.code == "Space") {
+        event.preventDefault()
+        type("-")
+    } else if (!/^[-a-z0-9]+$/i.test(event.key)) event.preventDefault()
+})
+
+const checkAlphanumeric = (event) => {
+    const text = (event.clipboardData || event.dataTransfer).getData("Text")
+    if (!/^[-a-z0-9]+$/i.test(text)) event.preventDefault()
+}
+
+roomInput.addEventListener("paste", checkAlphanumeric)
+roomInput.addEventListener("drop", checkAlphanumeric)
 
 messageInput.addEventListener("keydown", (event) => {
     if (event.key != "Enter" || event.shiftKey) return
@@ -67,6 +93,14 @@ if (roomName) {
         document.querySelector("#roomName").innerText = roomName
     }
 }
+
+document.querySelector("#room-form").addEventListener("submit", (event) => {
+    if (!roomInput.value.trim()) {
+        event.preventDefault()
+        roomInput.required = true
+        document.querySelector("#room-button").classList.add("required")
+    }
+})
 
 menuButton.addEventListener("click", toggleOpen)
 

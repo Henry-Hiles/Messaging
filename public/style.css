@@ -29,6 +29,7 @@ body {
 #content {
     width: 100%;
     height: 100vh;
+    background-color: var(--secondary);
     display: grid;
     grid-template-rows: 100px 1fr 150px;
 }
@@ -60,11 +61,13 @@ body {
 
 #rooms a {
     background-color: #374a5e;
+    border-radius: 5px;
+    padding: 0 15px;
+    text-align: center;
 }
 
 #rooms a.active {
     background-color: var(--primary);
-    font-weight: bold;
 }
 
 #rooms ul {
@@ -89,6 +92,10 @@ body {
 
 #rooms:not(.opened) + div nav {
     padding-left: 70px;
+}
+
+#rooms:not(.opened) + div #messages {
+    border-radius: 0;
 }
 
 #rooms form {
@@ -131,7 +138,7 @@ footer {
     font-family: inherit;
     font-size: 2rem;
     max-width: 100%;
-    max-height: 10vh;
+    max-height: 90%;
 }
 
 :is(textarea, input[type="text"])::placeholder {
@@ -201,18 +208,12 @@ button:is(:disabled, :hover) {
     border-radius: 20px;
 }
 
-#main-content {
-    background-color: var(--primary);
-    color: white;
-    display: flex;
-    padding: 30px;
-    flex-direction: column;
-}
-
 #messages {
     max-width: 100vw !important;
-    background-color: var(--primary);
+    background-color: #455c73;
+    border-radius: 30px 0 0 30px;
     padding: 30px;
+    transition: border-radius 1s;
     overflow-y: auto;
     display: flex;
     flex-direction: column-reverse;
@@ -220,6 +221,7 @@ button:is(:disabled, :hover) {
 
 #messages::-webkit-scrollbar {
     width: 10px;
+    cursor: pointer !important;
 }
 
 #messages::-webkit-scrollbar-track {

@@ -34,7 +34,8 @@ app.post("/", (req, res) => {
     if (
         !req.body.room.trim() ||
         !/^[-a-z0-9]+$/i.test(req.body.room) ||
-        rooms[req.body.room]
+        rooms[req.body.room] ||
+        req.body.room.length > 10
     ) {
         return res.redirect("/")
     }

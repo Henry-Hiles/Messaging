@@ -29,6 +29,22 @@ const submitMessage = () => {
     messageInput.value = ""
 }
 
+const rowLimit = 3
+let lastMessageScrollheight = messageInput.scrollHeight
+
+messageInput.addEventListener("input", () => {
+    var rows = parseInt(messageInput.getAttribute("rows"))
+    messageInput.setAttribute("rows", "1")
+
+    if (rows < rowLimit && messageInput.scrollHeight > lastMessageScrollheight)
+        rows++
+    else if (rows > 1 && messageInput.scrollHeight < lastMessageScrollheight)
+        rows--
+
+    lastMessageScrollheight = messageInput.scrollHeight
+    messageInput.setAttribute("rows", rows)
+})
+
 const type = (newText) => {
     const element = document.activeElement
     element.setRangeText(

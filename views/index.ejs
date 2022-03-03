@@ -38,20 +38,20 @@
             <ul id="room-container">
                 <% if(Object.keys(rooms).length)
                 {Object.keys(rooms).forEach(room => { %>
-                <li>
-                    <a
-                        href="/<%= room %>"
-                        class="<%= room == roomName ? 'active' : '' %>"
-                        ><%= room %></a
-                    >
-                </li>
+                    <li>
+                        <a
+                            href="/<%= room %>"
+                            class="<%= room == roomName ? 'active' : '' %>"
+                            ><%= room %></a
+                        >
+                    </li>
                 <% })} else {%>
-                <h1 class="medium-header" id="no-rooms">No rooms</h1>
+                    <h1 class="medium-header" id="no-rooms">No rooms</h1>
                 <%} %>
             </ul>
             <form method="POST" action="/" id="room-form" novalidate>
                 <div class="input-group">
-                    <input placeholder="Room Name" type="text" name="room" id="room" class="input-field" />
+                    <input placeholder="Room Name" type="text" name="room" id="room" class="input-field" maxlength="10" />
                     <button class="input-item" type="submit" id="room-button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -104,7 +104,7 @@
                 <textarea
                     id="message"
                     cols="30"
-                    rows="3"
+                    rows="1"
                     <%- !roomName ? "disabled placeholder='Join a room to send messages'" : 'placeholder="Enter your message"' %>
                 ></textarea>
                 <button

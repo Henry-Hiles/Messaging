@@ -213,7 +213,7 @@ button:is(:disabled, :hover) {
     background-color: #455c73;
     border-radius: 30px 0 0 30px;
     padding: 30px;
-    transition: border-radius 1s;
+    transition: border-radius 1.5s;
     overflow-y: auto;
     display: flex;
     flex-direction: column-reverse;

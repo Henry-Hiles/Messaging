@@ -5,4 +5,4 @@ Made with the technologies below.
 
 ## Technologies
 
-This project was built using handcrafted Javascript, as well as Node.js, Socket.io, and Express. It also uses nodemon for running in development.
+This project was built using handcrafted Javascript, as well as Node.js, Socket.io, and Express.
